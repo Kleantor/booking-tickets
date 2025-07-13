@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" style="overflow: hidden" class="production">
+<head>
+<!-- 
+  Этот проект использует платформу Glide для создания PWA-приложения.
+  Альтернативы: Bubble, Adalo, Webflow или кастомное решение на React/Vue.
+  
+  Glide предоставляет:
+  - Готовую PWA-инфраструктуру
+  - Управление состоянием приложения
+  - Интеграцию с Firebase
+  - Сервис-воркеры для оффлайн-работы
+-->
+
+<script>
+// Скрипты инициализации Glide (не удалять)
+if ("performance" in window) {
+    window.loadStart = window.performance.now();
+}
+var tryingReload = false;
+
+// Функции для работы с Service Worker (специфика Glide)
+function isSwSetup(state) {
+    return state === "installing" || state === "activating";
+}
+
+window.cleanupReload = function() {
+    // Система перезагрузки Glide при ошибках
+    if (tryingReload) return;
+    tryingReload = true;
+    // ... остальной код перезагрузки
+};
+
+// Обработка ошибок ресурсов (специфика Glide)
+window.addEventListener("error", ev => {
+    if (!("filename" in ev) return;
+    // ... обработка ошибок загрузки
+});
+</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no,user-scalable=no,viewport-fit=cover">
+
+<!-- 
+  Иконки и PWA-манифест (генерируются Glide автоматически)
+  Альтернатива: ручная настройка manifest.json и иконок
+-->
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KG...">
+<link rel="manifest" href="/play/6q8iC2puRTzDhvnefver?manifest">
+
+<!-- 
+  Настройки окружения Glide (не изменять)
+  Альтернатива: использование .env файлов в кастомных проектах
+-->
+<script>
+window.glideEnv="prod";
+window.glideDeploymentVersion = "b9b4d9fd787cf591f96e7efa445f9742681ad0fc";
+window.appID = "6q8iC2puRTzDhvnefver";
+</script>
+
+<!-- 
+  Стили Glide (можно дополнить своими)
+  Альтернатива: кастомные CSS/SASS/LESS файлы
+-->
+<style>
+html.development body {
+    color: hotpink;
+}
+
+html body {
+    color: #182026;
+}
+
+html {
+    font-family: -apple-system-body;
+    height: 100%;
+    background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+    html {
+        background-color: #131315;
+    }
+}
+
+#root {
+    height: 100%;
+    height: calc(100% + constant(safe-area-inset-top));
+    height: calc(100% + env(safe-area-inset-top));
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* Дополнительные стили Glide */
+</style>
+
+<!-- 
+  Подключение шрифтов (можно заменить на свои)
+  Glide использует Google Fonts по умолчанию
+-->
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto:400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- 
+  Основные скрипты приложения (генерируются Glide)
+  Альтернатива: сборка через Webpack/Rollup/Vite
+-->
+<script defer="defer" src="/static/js/vb9b4d9fd787cf591f96e7efa445f9742681ad0fc-runtime-play.5e5f36aa.js"></script>
+<link href="/static/css/play.cf7aa970.css" rel="stylesheet">
+
+<!-- 
+  Мета-теги для SEO (генерируются Glide)
+  Можно дополнить своими мета-тегами
+-->
+<meta property="og:title" content="КиноБронирование">
+<meta property="og:image" content="https://firebasestorage.googleapis.com/...">
+<meta name="og:description" content="Приложение для онлайн бронирования билетов в кинотеатр...">
+
+</head>
+<body style="-webkit-overflow-scrolling: auto">
+    <!-- 
+      Основная структура приложения Glide
+      Альтернатива: кастомная разметка на React/Vue компонентах
+    -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <div id="portal"></div>
+    
+    <!-- 
+      Блок для отображения ошибок (специфика Glide)
+      Можно кастомизировать, но не удалять
+    -->
+    <div id="reload-area" style="position: absolute; display: none; ...">
+        <div>Could not load network resources</div>
+        <button onclick="window.cleanupReload()">Retry</button>
+    </div>
+</body>
+</html>
